@@ -36,7 +36,10 @@ def parse_html(url):
     for i in td_elements:
         # numbers = re.findall(r'>\d+', i)
         if count <15 or count>=85:
-            correct_answers.append(i.text[17])
+            pattern = r'Possible Answer: (\d+)'
+            match = re.search(pattern, i.text)
+        
+            correct_answers.append(match.group(1))
             count += 1
             continue
         correct_answers.append(i.text[0])

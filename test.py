@@ -19,27 +19,22 @@ sa_score = 0
 qa_score = 0
 va_score = 0
 
-main_info = page_content.find_all('div',class_="main-info-pnl")
-user_info = {}
-user_info["participant_id"] = re.search(r"Participant ID: (\w+)", main_info[0].text).group(1)
-user_info["name"] = re.search(r"(?<=Participant Name: )\w+ \w+", main_info[0].text).group()
-user_info["test_center_name"] = re.search('Test Center Name: (.*) Test Date', main_info[0].text).group(1)
 
 
 
-
-
-
-# for i in td_elements:
-#     # numbers = re.findall(r'>\d+', i)
-#     if count <15 or count>=85:
-#         correct_answers.append(i.text[17])
-#         count += 1
-#         continue
-#     correct_answers.append(i.text[0])
-#     count += 1
-
-# answered = []
+for i in td_elements:
+    # numbers = re.findall(r'>\d+', i)
+    if count <15 or count>=85:
+        pattern = r'Possible Answer: (\d+)'
+        match = re.search(pattern, i.text)
+        
+        correct_answers.append(match.group(1))
+        count += 1
+        continue
+    correct_answers.append(i.text[0])
+    count += 1
+print(correct_answers)
+answered = []
 # for j in range(15):
     
 #     pattern = r'Given Answer :(\d+)'
@@ -77,7 +72,8 @@ user_info["test_center_name"] = re.search('Test Center Name: (.*) Test Date', ma
 #         answered.append(None)
 
 # for k in range(15):
-    
+#     print(answered[k])
+#     print(correct_answers[k])
 #     if answered[k] is None:
 #         sa["q"+str(k+1)] = "unanswered"
 #     if answered[k] == correct_answers[k]:
@@ -87,28 +83,29 @@ user_info["test_center_name"] = re.search('Test Center Name: (.*) Test Date', ma
 #         sa["q"+str(k+1)] = "incorrect"
 # sa["score"] = sa_score
 
-# for k in range(15,45):
+# # for k in range(15,45):
     
-#     if answered[k] is None:
-#         qa["q"+str(k-14)] = "unanswered"
-#     if answered[k] == correct_answers[k]:
-#         qa["q"+str(k-14)] = "correct"
-#         qa_score += 1
-#     if answered[k] != correct_answers[k]:
-#         qa["q"+str(k-14)] = "incorrect"
-#         qa_score -= 1
-# qa["score"] = qa_score
+# #     if answered[k] is None:
+# #         qa["q"+str(k-14)] = "unanswered"
+# #     if answered[k] == correct_answers[k]:
+# #         qa["q"+str(k-14)] = "correct"
+# #         qa_score += 1
+# #     if answered[k] != correct_answers[k]:
+# #         qa["q"+str(k-14)] = "incorrect"
+# #         qa_score -= 1
+# # qa["score"] = qa_score
 
-# for k in range(45,90):
+# # for k in range(45,90):
     
-#     if answered[k] is None:
-#         va["q"+str(k-44)] = "unanswered"
-#     if answered[k] == correct_answers[k]:
-#         va["q"+str(k-44)] = "correct"
-#         va_score += 1
-#     if answered[k] != correct_answers[k]:
-#         va["q"+str(k-44)] = "incorrect"
-#         va_score -= 1
-# va["score"] = va_score
+# #     if answered[k] is None:
+# #         va["q"+str(k-44)] = "unanswered"
+# #     if answered[k] == correct_answers[k]:
+# #         va["q"+str(k-44)] = "correct"
+# #         va_score += 1
+# #     if answered[k] != correct_answers[k]:
+# #         va["q"+str(k-44)] = "incorrect"
+# #         va_score -= 1
+# # va["score"] = va_score
 
-# okok = [sa,qa,va]
+# # okok = [sa,qa,va]
+# print(sa)
