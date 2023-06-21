@@ -83,9 +83,10 @@ def parse_html(url):
         
         if answered[k] is None:
             sa["q"+str(k+1)] = "unanswered"
+            continue
         if answered[k] == correct_answers[k]:
             sa["q"+str(k+1)] = "correct"
-            sa_score += 1
+            sa_score += 4
         if answered[k] != correct_answers[k]:
             sa["q"+str(k+1)] = "incorrect"
     sa["score"] = sa_score
@@ -94,9 +95,10 @@ def parse_html(url):
         
         if answered[k] is None:
             qa["q"+str(k-14)] = "unanswered"
+            continue
         if answered[k] == correct_answers[k]:
             qa["q"+str(k-14)] = "correct"
-            qa_score += 1
+            qa_score += 4
         if answered[k] != correct_answers[k]:
             qa["q"+str(k-14)] = "incorrect"
             qa_score -= 1
@@ -106,9 +108,10 @@ def parse_html(url):
         
         if answered[k] is None:
             va["q"+str(k-44)] = "unanswered"
+            continue
         if answered[k] == correct_answers[k]:
             va["q"+str(k-44)] = "correct"
-            va_score += 1
+            va_score += 4
         if answered[k] != correct_answers[k]:
             va["q"+str(k-44)] = "incorrect"
             va_score -= 1
