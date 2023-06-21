@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "*.py",
+            "use": "@bhaveshgoel07/ipm-calculator"
+        }
+    ],
+    "routes": [
+        {
+            "src": "(.*)",
+            "dest": "index.py"
+        }
+    ]
+  }

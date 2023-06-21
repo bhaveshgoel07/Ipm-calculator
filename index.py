@@ -22,6 +22,15 @@ def parse_html(url):
     sa_score = 0
     qa_score = 0
     va_score = 0
+    main_info = page_content.find_all('div',class_="main-info-pnl")
+    user_info = {}
+    user_info["participant_id"] = re.search(r"Participant ID: (\w+)", main_info[0].text).group(1)
+    user_info["name"] = re.search(r"(?<=Participant Name: )\w+ \w+", main_info[0].text).group()
+    user_info["test_center_name"] = re.search('Test Center Name: (.*) Test Date', main_info[0].text).group(1)
+
+
+
+
 
 
     for i in td_elements:
@@ -105,7 +114,7 @@ def parse_html(url):
             va_score -= 1
     va["score"] = va_score
 
-    okok = [sa,qa,va]
+    okok = [user_info,sa,qa,va]
     return jsonify(okok), 200
 
     # numbers = [td.text for td in td_elements if td.text.isdigit()]
